@@ -45,228 +45,221 @@ $(document).ready(function () {
     }, 1250);
   }, 750);
 
-  var buttonValue;
-  var currentStep;
-  
-  $("button.chat-button, #zipCodeSubmit, #countrySelectSubmit").on("click", function () {
-    currentStep = $(this).attr("data-form-step");
-    buttonValue = $(this).attr("data-form-value");
-  
-    // Step for US citizenship question
-    if (currentStep == "citizenship") {
-      $("#agentBlockZipCode .agent-chat").prepend(typingEffect());
-      $("#citizenshipButtons").addClass("hidden");
-      $("#userBlockCitizenship").removeClass("hidden");
-  
-      if (buttonValue == "Yes") {
-        $("#msgUserCitizenshipYes").removeClass("hidden");
-      } else {
-        $("#msgUserCitizenshipNo").removeClass("hidden");
-      }
-  
+ var buttonValue;
+var currentStep;
+
+$("button.chat-button, #zipCodeSubmit, #countrySelectSubmit").on("click", function () {
+  currentStep = $(this).attr("data-form-step");
+  buttonValue = $(this).attr("data-form-value");
+
+  // Step for US citizenship question
+  if (currentStep == "citizenship") {
+    $("#agentBlockZipCode .agent-chat").prepend(typingEffect());
+    $("#citizenshipButtons").addClass("hidden");
+    $("#userBlockCitizenship").removeClass("hidden");
+
+    if (buttonValue == "Yes") {
+      $("#msgUserCitizenshipYes").removeClass("hidden");
+    } else {
+      $("#msgUserCitizenshipNo").removeClass("hidden");
+    }
+
+    scrollToBottom();
+    setTimeout(function () {
+      $("#agentBlockZipCode").removeClass("hidden");
       scrollToBottom();
       setTimeout(function () {
-        $("#agentBlockZipCode").removeClass("hidden");
+        $(".temp-typing").remove();
+        $("#msgZipCode").removeClass("hidden").after(typingEffect());
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msgZipCode").removeClass("hidden").after(typingEffect());
+          $("#zipCodeInputContainer").removeClass("hidden");
+          scrollToBottom();
+        }, 750);
+      }, 2250);
+    }, 50);
+  }
+
+  // Step for zip code input
+  if (currentStep == "zipCode") {
+    var zipCode = $("#zipCodeInput").val();
+    if (/^\d{5}$/.test(zipCode)) {
+      $("#zipCodeInputContainer").addClass("hidden");
+      $("#userBlockZipCode").removeClass("hidden");
+      $("#msgUserZipCode").text(zipCode).removeClass("hidden");
+      
+      scrollToBottom();
+      setTimeout(function () {
+        $("#agentBlock2").removeClass("hidden");
+        scrollToBottom();
+        setTimeout(function () {
+          $(".temp-typing").remove();
+          $("#msg7").removeClass("hidden").after(typingEffect());
           scrollToBottom();
           setTimeout(function () {
             $(".temp-typing").remove();
-            $("#zipCodeInputContainer").removeClass("hidden");
+            $("#msg8").removeClass("hidden");
             scrollToBottom();
           }, 750);
-        }, 2250);
-      }, 50);
+        }, 1750);
+      }, 750);
+    } else {
+      alert("Please enter a valid 5-digit zip code.");
     }
-  
-// Step for zip code input
-if (currentStep == "zipCode") {
-  var zipCode = $("#zipCodeInput").val();
-  if (/^\d{5}$/.test(zipCode)) {
-    $("#zipCodeInputContainer").addClass("hidden");
-    $("#userBlockZipCode").removeClass("hidden");
-    $("#msgUserZipCode").text(zipCode).removeClass("hidden");
-    
+  }
+
+  // Step for citizenship question 
+  if (currentStep == 1) {
+    $("#agentBlockCitizenship").removeClass("hidden");
+    $("#msg6").removeClass("hidden").after(typingEffect());
     scrollToBottom();
     setTimeout(function () {
-      $("#agentBlock2").removeClass("hidden");
-      $("#agentBlock2 .agent-chat").prepend(typingEffect()); // Add typing effect
+      $(".temp-typing").remove();
+      $("#msgCitizenship").removeClass("hidden").after(typingEffect());
       scrollToBottom();
+      setTimeout(function () {
+        $(".temp-typing").remove();
+        $("#citizenshipButtons").removeClass("hidden");
+        scrollToBottom();
+      }, 750);
+    }, 750);
+  }
+
+  // Step for age range question
+  if (currentStep == 2) {
+    $("#agentBlock2").removeClass("hidden");
+    if (!$("#msg7").is(":visible")) {  // Check if the typing effect has already been shown
+      $("#agentBlock2 .agent-chat").prepend(typingEffect());
+      scrollToBottom();
+
       setTimeout(function () {
         $(".temp-typing").remove();
         $("#msg7").removeClass("hidden").after(typingEffect());
         scrollToBottom();
+
         setTimeout(function () {
           $(".temp-typing").remove();
           $("#msg8").removeClass("hidden");
           scrollToBottom();
-        }, 750); // Increased delay
-      }, 1750);
-    }, 750); // Increased delay
-  } else {
-    alert("Please enter a valid 5-digit zip code.");
+        }, 750);
+      }, 1500);
+    }
   }
-}
-  
-    // Step for citizenship question 
-    if (currentStep == 1) {
-      $("#agentBlockCitizenship").removeClass("hidden");
-      $("#msg6").removeClass("hidden").after(typingEffect());
+
+  // User response for age range
+  if (currentStep == 2) {
+    $("#userBlock2").removeClass("hidden");
+    $("#msg9" + buttonValue.toLowerCase()).removeClass("hidden").text(buttonValue);
+    scrollToBottom();
+
+    // Proceed to next step (insurance question)
+    setTimeout(function () {
+      currentStep = 3;
+      $("#agentBlock3").removeClass("hidden");
+      $("#agentBlock3 .agent-chat").prepend(typingEffect());
       scrollToBottom();
+
       setTimeout(function () {
         $(".temp-typing").remove();
-        $("#msgCitizenship").removeClass("hidden").after(typingEffect());
+        $("#msg10").removeClass("hidden").after(typingEffect());
         scrollToBottom();
+
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#citizenshipButtons").removeClass("hidden");
+          $("#msg11").removeClass("hidden");
           scrollToBottom();
         }, 750);
-      }, 750);
-    }
-  
-// Step for age range question
-if (currentStep == 2) {
-  $("#agentBlock2").removeClass("hidden");
-  $("#agentBlock2 .agent-chat").prepend(typingEffect());
-  scrollToBottom();
-
-  setTimeout(function () {
-    $(".temp-typing").remove();
-    $("#msg6").removeClass("hidden").after(typingEffect());
-    scrollToBottom();
-
-    setTimeout(function () {
-      $(".temp-typing").remove();
-      $("#msg7").removeClass("hidden").after(typingEffect());
-      scrollToBottom();
-
-      setTimeout(function () {
-        $(".temp-typing").remove();
-        $("#msg8").removeClass("hidden");
-        scrollToBottom();
-      }, 750);
+      }, 1500);
     }, 1500);
-  }, 1500);
-}
+  }
 
-// User response for age range
-if (currentStep == 2) {
-  $("#userBlock2").removeClass("hidden");
-  $("#msg9" + buttonValue.toLowerCase()).removeClass("hidden").text(buttonValue);
-  scrollToBottom();
+  // Step for insurance question
+  if (currentStep == 3) {
+    $("#agentBlock4 .agent-chat").prepend(typingEffect());
+    $("#msg11").addClass("hidden");
+    $("#userBlock3").removeClass("hidden");
 
-  // Proceed to next step (insurance question)
-  setTimeout(function () {
-    currentStep = 3;
-    $("#agentBlock3").removeClass("hidden");
-    $("#agentBlock3 .agent-chat").prepend(typingEffect());
-    scrollToBottom();
-
-    setTimeout(function () {
-      $(".temp-typing").remove();
-      $("#msg10").removeClass("hidden").after(typingEffect());
+    if (buttonValue == "No") {
+      $("#msg12no").removeClass("hidden");
       scrollToBottom();
 
+      // Skip country selection and proceed to congratulations
       setTimeout(function () {
-        $(".temp-typing").remove();
-        $("#msg11").removeClass("hidden");
-        scrollToBottom();
+        displayCongratulationsMessages();
       }, 750);
-    }, 1500);
-  }, 1500);
-}
-  
-    // Step for insurance question
-// Step for insurance question
-if (currentStep == 3) {
-  $("#agentBlock4 .agent-chat").prepend(typingEffect());
-  $("#msg11").addClass("hidden");
-  $("#userBlock3").removeClass("hidden");
-
-  if (buttonValue == "No") {
-    $("#msg12no").removeClass("hidden");
-    scrollToBottom();
-
-    // Skip country selection and proceed to congratulations
-    setTimeout(function () {
-      displayCongratulationsMessages();
-    }, 750);
-    
-  } else if (buttonValue == "Yes") {
-    $("#msg12yes").removeClass("hidden");
-    scrollToBottom();
-
-    // Show country selection if "Yes" with typing effect
-    setTimeout(function () {
-      $("#agentBlockCountry").removeClass("hidden");
-      $("#agentBlockCountry .agent-chat").prepend(typingEffect()); // Add typing effect
-      scrollToBottom();
       
+    } else if (buttonValue == "Yes") {
+      $("#msg12yes").removeClass("hidden");
+      scrollToBottom();
+
+      // Show country selection if "Yes" with typing effect
       setTimeout(function () {
-        $(".temp-typing").remove(); // Remove typing effect
-        $("#msgCountry").removeClass("hidden").after(typingEffect());
+        $("#agentBlockCountry").removeClass("hidden");
+        $("#agentBlockCountry .agent-chat").prepend(typingEffect());
         scrollToBottom();
         
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#countrySelectContainer").removeClass("hidden");
+          $("#msgCountry").removeClass("hidden").after(typingEffect());
           scrollToBottom();
-        }, 750);
-      }, 1500);
-    }, 2250);
-  }
-}
-
-// Rest of your code remains the same...
-  
-    // Step for country selection
-    if (currentStep == "country") {
-      $("#agentBlockCountry .agent-chat").prepend(typingEffect());
-      $("#countrySelectContainer").addClass("hidden");
-      $("#userBlockCountry").removeClass("hidden");
-  
-      // Display selected country
-      var selectedCountry = $("#countrySelect option:selected").text();
-      $("#msgUserCountry").text(selectedCountry).removeClass("hidden");
-  
-      scrollToBottom();
-  
-      // Proceed to congratulations messages after country selection
-      setTimeout(function () {
-        displayCongratulationsMessages();
-      }, 750);
+          
+          setTimeout(function () {
+            $(".temp-typing").remove();
+            $("#countrySelectContainer").removeClass("hidden");
+            scrollToBottom();
+          }, 750);
+        }, 1500);
+      }, 2250);
     }
-  
-    // Function to display congratulations messages
-    function displayCongratulationsMessages() {
-      $("#agentBlock4").removeClass("hidden");
+  }
+
+  // Step for country selection
+  if (currentStep == "country") {
+    // $("#agentBlockCountry .agent-chat").prepend(typingEffect());
+    $("#countrySelectContainer").addClass("hidden");
+    $("#userBlockCountry").removeClass("hidden");
+
+    // Display selected country
+    var selectedCountry = $("#countrySelect option:selected").text();
+    $("#msgUserCountry").text(selectedCountry).removeClass("hidden");
+
+    scrollToBottom();
+
+    // Proceed to congratulations messages after country selection
+    setTimeout(function () {
+      displayCongratulationsMessages();
+    }, 750);
+  }
+
+  // Function to display congratulations messages
+  function displayCongratulationsMessages() {
+    $("#agentBlock4").removeClass("hidden");
+    scrollToBottom();
+    setTimeout(function () {
+      $(".temp-typing").remove();
+      $("#msg13").removeClass("hidden").after(typingEffect());
       scrollToBottom();
       setTimeout(function () {
         $(".temp-typing").remove();
-        $("#msg13").removeClass("hidden").after(typingEffect());
+        $("#msg14").removeClass("hidden").after(typingEffect());
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msg14").removeClass("hidden").after(typingEffect());
+          $("#msg16").removeClass("hidden").after(typingEffect());
           scrollToBottom();
           setTimeout(function () {
             $(".temp-typing").remove();
-            $("#msg16").removeClass("hidden").after(typingEffect());
+            $("#msg17").removeClass("hidden");
+            $("#msg17a").removeClass("hidden");
             scrollToBottom();
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg17").removeClass("hidden");
-              $("#msg17a").removeClass("hidden");
-              scrollToBottom();
-            }, 0);
-          }, 2250);
-        }, 1750);
-      }, 1250);
-    }
-  });
+          }, 0);
+        }, 2250);
+      }, 1750);
+    }, 1250);
+  }
+});
+
   
   
   
