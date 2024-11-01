@@ -47,233 +47,229 @@ $(document).ready(function () {
 
   var buttonValue;
   var currentStep;
-
-  $("button.chat-button").on("click", function () {
+  
+  $("button.chat-button, #zipCodeSubmit, #countrySelectSubmit").on("click", function () {
     currentStep = $(this).attr("data-form-step");
     buttonValue = $(this).attr("data-form-value");
-
-    if (currentStep == 1) {
-      // Assume your anchor tag's href is something like /path?param1=value1
-      var anchorTag = document.getElementById("rtRef");
-      var anchorUrl = new URL(anchorTag.href);
-      var anchorParams = new URLSearchParams(anchorUrl.search);
-
-	//searchParams.append('affiliate_id', 002);
-      //  window.history.pushState(null, '', url.toString());
-
-      // Assume your window location is something like /path?param2=value2
-      var windowUrl = new URL(window.location.href);
-      var windowParams = new URLSearchParams(windowUrl.search);
-
-      // Append params from the anchor tag to the main URL's params
-      for (let pair of anchorParams.entries()) {
-        windowParams.append(pair[0], pair[1]);
+  
+    // Step for US citizenship question
+    if (currentStep == "citizenship") {
+      $("#agentBlockZipCode .agent-chat").prepend(typingEffect());
+      $("#citizenshipButtons").addClass("hidden");
+      $("#userBlockCitizenship").removeClass("hidden");
+  
+      if (buttonValue == "Yes") {
+        $("#msgUserCitizenshipYes").removeClass("hidden");
+      } else {
+        $("#msgUserCitizenshipNo").removeClass("hidden");
       }
-
-      // Set the window's location search params
-      windowUrl.search = windowParams.toString();
-     // history.replaceState({}, "", windowUrl.toString());
-
-      //scrollToBottom();
-      $("#agentBlock2 .agent-chat").prepend(typingEffect());
-      $("#msg4").addClass("hidden");
-      $("#userBlock1").removeClass("hidden");
+  
       scrollToBottom();
       setTimeout(function () {
-        $("#agentBlock2").removeClass("hidden");
+        $("#agentBlockZipCode").removeClass("hidden");
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msg6").removeClass("hidden").after(typingEffect());
+          $("#msgZipCode").removeClass("hidden").after(typingEffect());
           scrollToBottom();
           setTimeout(function () {
             $(".temp-typing").remove();
-            $("#msg7").removeClass("hidden").after(typingEffect());
+            $("#zipCodeInputContainer").removeClass("hidden");
             scrollToBottom();
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg8").removeClass("hidden");
-              scrollToBottom();
-            }, 0);
-          }, 1750);
+          }, 750);
         }, 2250);
       }, 50);
     }
-
-    if (currentStep == 2) {
-      //scrollToBottom();
-      $("#agentBlock3 .agent-chat").prepend(typingEffect());
-      $("#msg8").addClass("hidden");
-      $("#userBlock2").removeClass("hidden");
-      //scrollToBottom();
-      if (buttonValue == "No") {
-        $("#msg9no").removeClass("hidden");
-        //$("#hdnApprovalStatus").val("no");
-      } else if(buttonValue == "Yes") {
-        $("#msg9yes").removeClass("hidden");
-      } else {
-        $("#msg9maybe").removeClass("hidden");
-
-      }
+  
+// Step for zip code input
+if (currentStep == "zipCode") {
+  var zipCode = $("#zipCodeInput").val();
+  if (/^\d{5}$/.test(zipCode)) {
+    $("#zipCodeInputContainer").addClass("hidden");
+    $("#userBlockZipCode").removeClass("hidden");
+    $("#msgUserZipCode").text(zipCode).removeClass("hidden");
+    
+    scrollToBottom();
+    setTimeout(function () {
+      $("#agentBlock2").removeClass("hidden");
+      $("#agentBlock2 .agent-chat").prepend(typingEffect()); // Add typing effect
       scrollToBottom();
       setTimeout(function () {
-        $("#agentBlock3").removeClass("hidden");
+        $(".temp-typing").remove();
+        $("#msg7").removeClass("hidden").after(typingEffect());
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msg10").removeClass("hidden").after(typingEffect());
+          $("#msg8").removeClass("hidden");
           scrollToBottom();
-          setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg11").removeClass("hidden");
-            scrollToBottom();
-          }, 0);
-        }, 1750);
-      }, 50);
+        }, 750); // Increased delay
+      }, 1750);
+    }, 750); // Increased delay
+  } else {
+    alert("Please enter a valid 5-digit zip code.");
+  }
+}
+  
+    // Step for citizenship question 
+    if (currentStep == 1) {
+      $("#agentBlockCitizenship").removeClass("hidden");
+      $("#msg6").removeClass("hidden").after(typingEffect());
+      scrollToBottom();
+      setTimeout(function () {
+        $(".temp-typing").remove();
+        $("#msgCitizenship").removeClass("hidden").after(typingEffect());
+        scrollToBottom();
+        setTimeout(function () {
+          $(".temp-typing").remove();
+          $("#citizenshipButtons").removeClass("hidden");
+          scrollToBottom();
+        }, 750);
+      }, 750);
     }
-    if (currentStep == 3) {
-      //scrollToBottom();
-      $("#agentBlock4 .agent-chat").prepend(typingEffect());
-      $("#msg11").addClass("hidden");
-      $("#userBlock3").removeClass("hidden");
-      //scrollToBottom();
-      if (buttonValue == "No") {
-        $("#msg12no").removeClass("hidden");
-      } else if (buttonValue == "Yes") {
+  
+// Step for age range question
+if (currentStep == 2) {
+  $("#agentBlock2").removeClass("hidden");
+  $("#agentBlock2 .agent-chat").prepend(typingEffect());
+  scrollToBottom();
 
-        $("#msg12yes").removeClass("hidden");
-      } else {
-        $("#msg12maybe").removeClass("hidden");
+  setTimeout(function () {
+    $(".temp-typing").remove();
+    $("#msg6").removeClass("hidden").after(typingEffect());
+    scrollToBottom();
 
-      }
-      /*if (buttonValue == "No") {
-       // $("#msg12no").removeClass("hidden");
-      } else if (buttonValue == "Medicaid") {
-      //  $("#msg12medicaid").removeClass("hidden");
-        // $("#hdnApprovalStatus").val("no");
-        setTimeout(function () {
-          $("#agentBlock4").removeClass("hidden");
-          scrollToBottom();
-          setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg18").removeClass("hidden").after(typingEffect());
-            scrollToBottom();
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg19").removeClass("hidden");
-              scrollToBottom();
-              setTimeout(function () {
-                $(".temp-typing").remove();
-                $("#msg20").removeClass("hidden");
-                console.log("here");
-                scrollToBottom();
-                setTimeout(function () {
-                  $("#disconnected").removeClass("hidden");
-                  scrollToBottom();
-                }, 1250);
-              }, 1250);
-            }, 1250);
-          }, 1250);
-        }, 1250);
-        return false;
-      } else {
-        $("#msg12medicare").removeClass("hidden");
-        setTimeout(function () {
-          $("#agentBlock4").removeClass("hidden");
-          scrollToBottom();
-          setTimeout(function () {
-            $(".temp-typing").remove();
-            $("#msg18").removeClass("hidden").after(typingEffect());
-            scrollToBottom();
-            setTimeout(function () {
-              $(".temp-typing").remove();
-              $("#msg19").removeClass("hidden");
-              scrollToBottom();
-              setTimeout(function () {
-                $(".temp-typing").remove();
-                $("#msg20").removeClass("hidden");
-                scrollToBottom();
-                setTimeout(function () {
-                  $("#disconnected").removeClass("hidden");
-                  scrollToBottom();
-                }, 1250);
-              }, 1250);
-            }, 1250);
-          }, 1250);
-        }, 1250);
-        return false;
-      }*/
+    setTimeout(function () {
+      $(".temp-typing").remove();
+      $("#msg7").removeClass("hidden").after(typingEffect());
       scrollToBottom();
-      //
 
-      if ($("#hdnApprovalStatus").val() == "no") {
-        //downsell
-        $("#DownsellNumber").removeClass("hidden");
-
-        setTimeout(function () {
-          $("#msg17approved").removeClass("hidden");
-          scrollToBottom();
-          setTimeout(() => {
-            var setMinutes = 60 * startTime,
-            display = document.querySelectorAll("#timer");
-          startTimer(setMinutes, display);
-          }, 1000);
-        }, 750);
-        
-        $("#msg14disapproved").removeClass("hidden");
-        $("#msg16disapproved").removeClass("hidden");
-      } else {
-        //standard aca
-        $("#PrimaryNumber").removeClass("hidden");
-
-        setTimeout(function () {
-          $("#msg17approved").removeClass("hidden");
-          scrollToBottom();
-          setTimeout(() => {
-            var setMinutes = 60 * startTime,
-            display = document.querySelectorAll("#timer");
-          startTimer(setMinutes, display);
-          }, 1000);
-        }, 750);
-       
-        $("#msg14approved").removeClass("hidden");
-        $("#msg16approved").removeClass("hidden");
-      }
-      scrollToBottom();
-      //
       setTimeout(function () {
-        $("#agentBlock4").removeClass("hidden");
+        $(".temp-typing").remove();
+        $("#msg8").removeClass("hidden");
+        scrollToBottom();
+      }, 750);
+    }, 1500);
+  }, 1500);
+}
+
+// User response for age range
+if (currentStep == 2) {
+  $("#userBlock2").removeClass("hidden");
+  $("#msg9" + buttonValue.toLowerCase()).removeClass("hidden").text(buttonValue);
+  scrollToBottom();
+
+  // Proceed to next step (insurance question)
+  setTimeout(function () {
+    currentStep = 3;
+    $("#agentBlock3").removeClass("hidden");
+    $("#agentBlock3 .agent-chat").prepend(typingEffect());
+    scrollToBottom();
+
+    setTimeout(function () {
+      $(".temp-typing").remove();
+      $("#msg10").removeClass("hidden").after(typingEffect());
+      scrollToBottom();
+
+      setTimeout(function () {
+        $(".temp-typing").remove();
+        $("#msg11").removeClass("hidden");
+        scrollToBottom();
+      }, 750);
+    }, 1500);
+  }, 1500);
+}
+  
+    // Step for insurance question
+// Step for insurance question
+if (currentStep == 3) {
+  $("#agentBlock4 .agent-chat").prepend(typingEffect());
+  $("#msg11").addClass("hidden");
+  $("#userBlock3").removeClass("hidden");
+
+  if (buttonValue == "No") {
+    $("#msg12no").removeClass("hidden");
+    scrollToBottom();
+
+    // Skip country selection and proceed to congratulations
+    setTimeout(function () {
+      displayCongratulationsMessages();
+    }, 750);
+    
+  } else if (buttonValue == "Yes") {
+    $("#msg12yes").removeClass("hidden");
+    scrollToBottom();
+
+    // Show country selection if "Yes" with typing effect
+    setTimeout(function () {
+      $("#agentBlockCountry").removeClass("hidden");
+      $("#agentBlockCountry .agent-chat").prepend(typingEffect()); // Add typing effect
+      scrollToBottom();
+      
+      setTimeout(function () {
+        $(".temp-typing").remove(); // Remove typing effect
+        $("#msgCountry").removeClass("hidden").after(typingEffect());
+        scrollToBottom();
+        
+        setTimeout(function () {
+          $(".temp-typing").remove();
+          $("#countrySelectContainer").removeClass("hidden");
+          scrollToBottom();
+        }, 750);
+      }, 1500);
+    }, 2250);
+  }
+}
+
+// Rest of your code remains the same...
+  
+    // Step for country selection
+    if (currentStep == "country") {
+      $("#agentBlockCountry .agent-chat").prepend(typingEffect());
+      $("#countrySelectContainer").addClass("hidden");
+      $("#userBlockCountry").removeClass("hidden");
+  
+      // Display selected country
+      var selectedCountry = $("#countrySelect option:selected").text();
+      $("#msgUserCountry").text(selectedCountry).removeClass("hidden");
+  
+      scrollToBottom();
+  
+      // Proceed to congratulations messages after country selection
+      setTimeout(function () {
+        displayCongratulationsMessages();
+      }, 750);
+    }
+  
+    // Function to display congratulations messages
+    function displayCongratulationsMessages() {
+      $("#agentBlock4").removeClass("hidden");
+      scrollToBottom();
+      setTimeout(function () {
+        $(".temp-typing").remove();
+        $("#msg13").removeClass("hidden").after(typingEffect());
         scrollToBottom();
         setTimeout(function () {
           $(".temp-typing").remove();
-          $("#msg13").removeClass("hidden").after(typingEffect());
+          $("#msg14").removeClass("hidden").after(typingEffect());
           scrollToBottom();
           setTimeout(function () {
             $(".temp-typing").remove();
-            $("#msg14").removeClass("hidden").after(typingEffect());
+            $("#msg16").removeClass("hidden").after(typingEffect());
             scrollToBottom();
-          //  setTimeout(function () {
-            //  $(".temp-typing").remove();
-            //  $("#msg15").removeClass("hidden").after(typingEffect());
+            setTimeout(function () {
+              $(".temp-typing").remove();
+              $("#msg17").removeClass("hidden");
+              $("#msg17a").removeClass("hidden");
               scrollToBottom();
-              setTimeout(function () {
-                $(".temp-typing").remove();
-                $("#msg16").removeClass("hidden").after(typingEffect());
-                scrollToBottom();
-                setTimeout(function () {
-                  $(".temp-typing").remove();
-                  $("#msg17").removeClass("hidden");
-                  $("#msg17a").removeClass("hidden");
-                  //$('#tcpa').removeClass('hidden');
-                  scrollToBottom();
-                }, 0);
-              }, 2250);
-         //   }, 1250);
-          }, 1750);
-        }, 1250);
-      }, 250);
+            }, 0);
+          }, 2250);
+        }, 1750);
+      }, 1250);
     }
   });
+  
+  
+  
 
   function scrollToBottom(elementId) {
     var object = $("main");

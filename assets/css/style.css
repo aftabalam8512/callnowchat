@@ -718,6 +718,20 @@ video {
 .overflow-hidden {
   overflow: hidden;
 }
+#zipCodeInput, #countrySelect{
+padding: 10px 20px;
+margin-bottom: 10px;
+
+}
+#zipCodeInputContainer button{
+padding: 10px 20px !important;
+}
+#countrySelectContainer button{
+  padding: 10px 20px !important;
+  }
+.yearsbtn{
+  margin-bottom: 10px;
+}
 
 .rounded-full {
   border-radius: 9999px;

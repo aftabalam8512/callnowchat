@@ -17,7 +17,7 @@
     <meta name="description" content="Just Announced For Province 1 Residents: Get Up To $40,000 Cash To Cover Burial Expenses And Unpaid Bills With New Benefit Program">
     <link href="assets/css/style.css" rel="stylesheet" media="all">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
-	<script>
+	<!-- <script>
        $(function() {
 		$.ajax({
     			url: "https://api.ipapi.com/api/check/?access_key=a0fb034650b925339c887b37f2df1267",
@@ -31,7 +31,7 @@
 	})
 
 
-                </script>
+                </script> -->
     <style>
       .typing-animation {
         display: inline-flex;
@@ -571,18 +571,10 @@
     <main class="min-h-screen">
       <div class="max-w-4xl mx-auto bg-white text-center text-gray-600">
         <div class="p-4">
-          <!-- <p class="font-serif text-md sm:text-lg font-bold mt-2">
-            <span class="text-red-600">Warning:</span> Enrollment closes on
-            <span id="currentDate">Tuesday, 10/03/2023</span> at midnight.
-          </p> -->
-          <!-- <h2 class="font-bold text-xl sm:text-3xl mt-1">
-	       Just Announced For <spam id="region"></spam>: Get Up To $25,000 in Coverage For Burial Expenses And Unpaid Bills For Less Than $3/day.
-
-          </h2> -->
           <h2 class="font-bold text-xl sm:text-3xl mt-1">
-         Get Up To $25,000 in Coverage For Burial Expenses And Unpaid Bills For Less Than $3/day.
-             </h2>
-        </div> 
+            Get Up To $25,000 in Coverage For Burial Expenses And Unpaid Bills For Less Than $3/day.
+          </h2>
+        </div>
         <div class="w-full md:col-span-1 text-center block">
           <div class="text-sm flex items-center justify-center">
             <span class="relative flex h-4 w-4 inline-flex mr-2">
@@ -593,30 +585,27 @@
           </div>
         </div>
       </div>
-
+    
       <div class="max-w-md mx-auto bg-white">
         <div class="p-4">
           <div class="space-y-4">
             <div class="chat-container pb-2">
+    
               <!-- Agent message -->
               <div id="agentBlock1" class="flex items-end w-5/6">
                 <div class="flex-shrink-0">
                   <img class="w-8 h-8 rounded-full" src="assets/images/agent.png" alt="Sender Avatar">
                 </div>
                 <div class="ml-3 agent-chat">
-                  
                   <div id="msg1" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                     <p class="text-md text-gray-800">Hi 👋</p>
                   </div>
                   <div id="msg2" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p class="text-md text-gray-800">
-                      I'm Nancy from Smart Final Expense.
-                    </p>
+                    <p class="text-md text-gray-800">I'm Nancy from Smart Final Expense.</p>
                   </div>
                   <div id="msg3" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                   <p class="text-md text-gray-800">
-                    Want to find out if you qualify for a policy starting at just $41 a month?” Ty!
-                    😃
+                    <p class="text-md text-gray-800">
+                      Want to find out if you qualify for a policy starting at just $41 a month? Ty! 😃
                     </p>
                   </div>
                   <div id="msg4" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
@@ -628,65 +617,130 @@
                   </div>
                 </div>
               </div>
-
-
-              <!-- User message -->
-              <div id="userBlock1" class="flex items-start justify-end pt-4 hidden">
-                <div class="mr-3 receiver-chat">
-                  <div id="msg5" class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
-                    <p class="text-md">Yes</p>
-                  </div>
-                </div>
-                <div class="flex-shrink-0">
-                  <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
-                </div>
-              </div>
-
-              <!-- Agent message -->
-              <div id="agentBlock2" class="flex items-end w-5/6 hidden pt-4">
+    
+              <!-- US Citizenship Question Block -->
+              <div id="agentBlockCitizenship" class="flex items-end w-5/6 hidden pt-4">
                 <div class="flex-shrink-0">
                   <img class="w-8 h-8 rounded-full" src="assets/images/agent.png" alt="Sender Avatar">
                 </div>
                 <div class="ml-3 agent-chat">
                   <div id="msg6" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p class="text-md text-gray-800">
-                    Okay, let me ask you a couple questions.
-                    </p>
+                    <p class="text-md text-gray-800">Okay, let me ask you a couple questions.</p>
                   </div>
-                  <div id="msg7" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p class="text-md text-gray-800">
-                    What is your age range?
-                    </p>
+                  <div id="msgCitizenship" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                    <p class="text-md text-gray-800">Are you a US citizen?</p>
                   </div>
-                  <div id="msg8" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <div class="grid grid-rows-1 grid-cols-1 gap-x-3">
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="Yes" data-answer="50-60" style="margin-bottom:10px">
-                        50 - 60 
-                      </button>
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="No" data-answer="61-70" style="margin-bottom:10px">
-                        61 - 70
-                      </button>
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="Maybe" data-answer="71-79">
-                        71 - 79
-                      </button>
-                    </div>
+                  <div id="citizenshipButtons" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                    <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="citizenship" data-form-value="Yes" data-answer="yes">Yes</button>
+                    <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="citizenship" data-form-value="No" data-answer="no">No</button>
                   </div>
                 </div>
               </div>
-
-              <!-- User message -->
-              <div id="userBlock2" class="flex items-start justify-end hidden">
+    
+              <!-- User response for US Citizenship -->
+              <div id="userBlockCitizenship" class="flex items-start justify-end hidden">
                 <div class="mr-3 receiver-chat">
                   <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
-                    <p id="msg9yes" class="text-md hidden">50 - 60</p>
-                    <p id="msg9no" class="text-md hidden">61 - 70</p>
-                    <p id="msg9maybe" class="text-md hidden">71 - 79</p>
+                    <p id="msgUserCitizenshipYes" class="text-md hidden">Yes</p>
+                    <p id="msgUserCitizenshipNo" class="text-md hidden">No</p>
                   </div>
                 </div>
                 <div class="flex-shrink-0">
                   <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
                 </div>
               </div>
+    
+              <!-- Zip Code Question Block -->
+              <div id="agentBlockZipCode" class="flex items-end w-5/6 hidden pt-4">
+                <div class="flex-shrink-0">
+                  <img class="w-8 h-8 rounded-full" src="assets/images/agent.png" alt="Sender Avatar">
+                </div>
+                <div class="ml-3 agent-chat">
+                  <div id="msgZipCode" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                    <p class="text-md text-gray-800">What is your zip code?</p>
+                  </div>
+                  <div id="zipCodeInputContainer" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+                    <input id="zipCodeInput" type="text" class="bg-white border rounded-full px-4 py-2 text-md" maxlength="5" pattern="\d*" placeholder="Enter 5-digit zip code" data-form-step="zipCode">
+                    <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-2 px-4" type="button" id="zipCodeSubmit" data-form-step="zipCode">Submit</button>
+                  </div>
+                </div>
+              </div>
+    
+              <!-- User response for Zip Code -->
+              <div id="userBlockZipCode" class="flex items-start justify-end hidden">
+                <div class="mr-3 receiver-chat">
+                  <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
+                    <p id="msgUserZipCode" class="text-md hidden"></p>
+                  </div>
+                </div>
+                <div class="flex-shrink-0">
+                  <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
+                </div>
+              </div>
+    
+<!-- Age Range Question Block -->
+<div id="agentBlock2" class="flex items-end w-5/6 hidden pt-4">
+  <div class="flex-shrink-0">
+    <img class="w-8 h-8 rounded-full" src="assets/images/agent.png" alt="Sender Avatar">
+  </div>
+  <div class="ml-3 agent-chat">
+    <div id="msg6" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+      <p class="text-md text-gray-800">Okay, let me ask you a couple questions.</p>
+    </div>
+    <div id="msg7" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+      <p class="text-md text-gray-800">What is your age range?</p>
+    </div>
+    <div id="msg8" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+      <!-- Set grid to 2 columns for two buttons per row -->
+      <div class="grid grid-cols-2 gap-x-3 gap-y-2">
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="20-30" data-answer="20-30">
+          20 - 30
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="31-40" data-answer="31-40">
+          31 - 40
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="41-50" data-answer="41-50">
+          41 - 50
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="51-60" data-answer="51-60">
+          51 - 60
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="61-70" data-answer="61-70">
+          61 - 70
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="71-80" data-answer="71-80">
+          71 - 80
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="81-90" data-answer="81-90">
+          81 - 90
+        </button>
+        <button class="api-btn chat-button yearsbtn text-white font-bold bg-blue-500 rounded-full py-3 px-8" type="button" data-form-step="2" data-form-value="91-100" data-answer="91-100">
+          91 - 100
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- User message -->
+<div id="userBlock2" class="flex items-start justify-end hidden">
+  <div class="mr-3 receiver-chat">
+    <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
+      <p id="msg920-30" class="text-md hidden">20 - 30</p>
+      <p id="msg931-40" class="text-md hidden">31 - 40</p>
+      <p id="msg941-50" class="text-md hidden">41 - 50</p>
+      <p id="msg951-60" class="text-md hidden">51 - 60</p>
+      <p id="msg961-70" class="text-md hidden">61 - 70</p>
+      <p id="msg971-80" class="text-md hidden">71 - 80</p>
+      <p id="msg981-90" class="text-md hidden">81 - 90</p>
+      <p id="msg991-100" class="text-md hidden">91 - 100</p>
+    </div>
+  </div>
+  <div class="flex-shrink-0">
+    <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
+  </div>
+</div>
 
               <!-- Agent message -->
               <div id="agentBlock3" class="flex items-end w-5/6 hidden pt-4">
@@ -697,19 +751,16 @@
                 <div class="ml-3 agent-chat">
                   <div id="msg10" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                     <p class="text-md text-gray-800">
-                    Who is your beneficiary?
+                      Are you currently insured?
                     </p>
                   </div>
                   <div id="msg11" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                     <div class="grid grid-rows-2 grid-cols-1 gap-y-3">
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn finishquiz" type="button" data-form-step="3" data-form-value="Yes" data-answer="kids">
-                        Kid(s)
+                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn finishquiz" type="button" data-form-step="3" data-form-value="Yes" data-answer="Yes">
+                        Yes
                       </button>
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn finishquiz" type="button" data-form-step="3" data-form-value="No" data-answer="spouse">
-                        Spouse
-                      </button>
-                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn finishquiz" type="button" data-form-step="3" data-form-value="Maybe" data-answer="others"">
-                        Other
+                      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-3 px-8 funnel-complete-btn finishquiz" type="button" data-form-step="3" data-form-value="No" data-answer="No">
+                        No
                       </button>
                     </div>
                   </div>
@@ -720,17 +771,58 @@
               <div id="userBlock3" class="flex items-start justify-end hidden">
                 <div class="mr-3 receiver-chat">
                   <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
-                    <p id="msg12yes" class="text-md hidden">Kid(s)</p>
-                    <p id="msg12no" class="text-md hidden">Spouse</p>
-                    <p id="msg12maybe" class="text-md hidden">Other</p>
-                    <p id="msg12medicaid" class="text-md hidden">Medicaid</p>
-                    <p id="msg12medicare" class="text-md hidden">Medicare</p>
+                    <p id="msg12yes" class="text-md hidden">Yes</p>
+                    <p id="msg12no" class="text-md hidden">No</p>
                   </div>
                 </div>
                 <div class="flex-shrink-0">
                   <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
                 </div>
               </div>
+
+              <!-- Country Selection Block -->
+<div id="agentBlockCountry" class="flex items-end w-5/6 hidden pt-4">
+  <div class="flex-shrink-0">
+    <img class="w-8 h-8 rounded-full" src="assets/images/agent.png" alt="Sender Avatar">
+  </div>
+  <div class="ml-3 agent-chat">
+    <div id="msgCountry" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+      <p class="text-md text-gray-800">Select your insurance company</p>
+    </div>
+    <div id="countrySelectContainer" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
+      <select id="countrySelect" class="bg-white border rounded-full px-4 py-2 text-md" data-form-step="country">
+        <option value="">Select</option>
+        <option value="ALLSTATE">ALLSTATE</option>
+        <option value="STATEFARM">STATEFARM</option><option value="LIBERTY">LIBERTY</option>
+        <option value="NATIONWIDE">NATIONWIDE</option>
+        <option value="FARMERS">FARMERS</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+      <button class="api-btn chat-button text-white font-bold bg-blue-500 rounded-full py-2 px-4" type="button" id="countrySelectSubmit" data-form-step="country">Submit</button>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- User response for Country Selection -->
+<div id="userBlockCountry" class="flex items-start justify-end hidden">
+  <div class="mr-3 receiver-chat">
+    <div class="bg-blue-500 text-white p-3 rounded-lg shadow-xs mt-2 inline-block">
+      <p id="msgUserCountry" class="text-md hidden"></p>
+    </div>
+  </div>
+  <div class="flex-shrink-0">
+    <img class="w-8 h-8 rounded-full" src="assets/images/profile.png" alt="Receiver Avatar">
+  </div>
+</div>
+
+
+
+              
 
               <!-- Agent message -->
               <div id="agentBlock4" class="flex items-end w-5/6 hidden pt-4">
@@ -742,12 +834,12 @@
                    <p class="text-md text-gray-800">🎉 Congratulations! 🎁</p>
                   </div>
                   <div id="msg14" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p id="msg14approved" class="text-md text-gray-800 hidden">
+                    <!-- <p id="msg14approved" class="text-md text-gray-800 hidden">
                     You pre-qualify! You can use this coverage for your final expenses, burial costs and even unpaid debt. 
 
-                    </p>
-                    <p id="msg14disapproved" class="text-md text-gray-800 hidden">
-                    You pre-qualify! You can use this benefit for your final expenses and even unpaid debt! 
+                    </p> -->
+                    <p id="msg14disapproveds" class="text-md text-gray-800">
+                    You pre-qualify! You're qualified to slash your current insurance costs by up to 50%! 
 
                     </p>
                   </div>
@@ -758,12 +850,12 @@
                     </p>
                   </div>
                   <div id="msg16" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p id="msg16approved" class="text-md text-gray-800 hidden">
+                    <p id="msg16approveds" class="text-md text-gray-800 ">
                     Tap the button below to claim your $25,000 coverage plan. It only takes a few minutes over the phone.
                     </p>
-                    <p id="msg16disapproved" class="text-md text-gray-800 hidden">
+                    <!-- <p id="msg16disapproved" class="text-md text-gray-800 hidden">
                     Tap the button below to claim your $25,000 funeral benefit. It only takes a few minutes over the phone.
-                    </p>
+                    </p> -->
                   </div>
                   <div id="msg17" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
                     <p class="text-md text-gray-800 py-2" id="phone-number">
@@ -772,7 +864,7 @@
                       </p>
                   </div>
                   <div id="msg17a" class="bg-gray-200 p-3 rounded-lg shadow-xs mt-2 w-fit hidden">
-                    <p id="msg17approved" class="text-md text-gray-800 hidden">
+                    <p id="msg17approveds" class="text-md text-gray-800 ">
                     Due to high call volume, your spot can only be reserved for <span id="timer" style="font-weight:bold;color:red">03:00</span>
                     </p>
                   </div>
